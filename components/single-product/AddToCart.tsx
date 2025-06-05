@@ -5,16 +5,16 @@ import { Mode } from './SelectProductAmount';
 import FormContainer from '../form/FormContainer';
 import { SubmitButton } from '../form/Buttons';
 import { addToCartAction } from '@/utils/action';
-//import { useAuth } from '@clerk/nextjs';
+import { useAuth } from '@clerk/nextjs';
 import { ProductSignInButton } from '../form/Buttons';
 
 function AddToCart({ productId }: { productId: string }) {
   const [amount, setAmount] = useState(1);
-  //const { userId } = useAuth();
+  const { userId } = useAuth();
+
   return (
     <div className='mt-4'>
-      cart
-    { /* <SelectProductAmount
+      <SelectProductAmount
         mode={Mode.SingleProduct}
         amount={amount}
         setAmount={setAmount}
@@ -23,12 +23,13 @@ function AddToCart({ productId }: { productId: string }) {
         <FormContainer action={addToCartAction}>
           <input type='hidden' name='productId' value={productId} />
           <input type='hidden' name='amount' value={amount} />
-          <SubmitButton text='add to cart' className='mt-8' />
+          <SubmitButton text='Ajouter au panier' className='mt-8' />
         </FormContainer>
       ) : (
         <ProductSignInButton />
-      )} */}
+      )}
     </div>
   );
 }
+
 export default AddToCart;

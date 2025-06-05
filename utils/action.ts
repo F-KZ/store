@@ -12,11 +12,17 @@ import {
 import { deleteImage, uploadImage } from './supabase';
 import { revalidatePath } from 'next/cache';
 import { Cart } from '@prisma/client';
+
 const getAuthUser = async () => {
   const user = await currentUser();
   if (!user) redirect('/');
   return user;
 };
+
+const signOut = async () => {
+  await auth.signOut?.();
+  redirect('/');
+}
 
 const getAdminUser = async () => {
   const user = await getAuthUser();
@@ -461,19 +467,25 @@ export const updateCart = async (cart: Cart) => {
   return { cartItems, currentCart };
 };
 
-export const addToCartAction = async (prevState: any, formData: FormData) => {
+export const addToCartAction = async (formData: FormData) => {
   const user = await getAuthUser();
   try {
     const productId = formData.get('productId') as string;
     const amount = Number(formData.get('amount'));
-    await fetchProduct(productId);
-    const cart = await fetchOrCreateCart({ userId: user.id });
-    await updateOrCreateCartItem({ productId, cartId: cart.id, amount });
+    const cart = await fetchOrCreateCart({
+      userId: user.id,
+      errorOnFailure: true,
+    });
+    await updateOrCreateCartItem({
+      productId,
+      cartId: cart.id,
+      amount,
+    });
     await updateCart(cart);
+    revalidatePath('/cart');
   } catch (error) {
-    return renderError(error);
+    console.error(error);
   }
-  redirect('/cart');
 };
 
 export const removeCartItemAction = async (

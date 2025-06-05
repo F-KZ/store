@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 import { LuShoppingCart } from 'react-icons/lu';
 //import { fetchCartItems } from '@/utils/actions';
 async function CartButton() {
-  const numItemsInCart = 8
+  const numItemsInCart = 0
 
   return (
     <Button
@@ -14,9 +14,11 @@ async function CartButton() {
     >
       <Link href='/cart'>
         <LuShoppingCart />
+       { numItemsInCart > 0 && (
         <span className='absolute -top-3 -right-3 bg-primary text-white rounded-full h-6 w-6 flex items-center justify-center text-xs'>
           {numItemsInCart}
         </span>
+       )}
       </Link>
     </Button>
   );

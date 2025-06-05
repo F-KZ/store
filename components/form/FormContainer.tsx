@@ -1,19 +1,25 @@
 'use client';
-
+import { useFormStatus } from 'react-dom';
 
 // import { useToast } from '@/components/ui/use-toast';
 // import { actionFunction } from '@/utils/types';
 
+type ActionFunction = (formData: FormData) => Promise<void>;
 
 function FormContainer({
- // action,
+  action,
   children,
 }: {
-//  action: actionFunction;
+  action: ActionFunction;
   children: React.ReactNode;
 }) {
- // const { toast } = useToast();
+  // const { toast } = useToast();
  
-  return <form >{children}</form>;
+  return (
+    <form action={action}>
+      {children}
+    </form>
+  );
 }
+
 export default FormContainer;
