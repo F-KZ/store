@@ -19,6 +19,13 @@ async function ProductsContainer({
   return (
     <>
       {/* HEADER */}
+      <h1 className='flex flex-wrap gap-2 sm:gap-x-6 items-center justify-center text-2xl font-bold leading-none tracking-wide sm:text-4xl'>
+          Discover our range of
+          <span className='bg-primary py-2 px-4 rounded-lg tracking-widest text-white'>
+            products
+          </span>
+        </h1>
+      <Separator className='mt-4' />
       <section>
         <div className='flex justify-between items-center'>
           <h4 className='font-medium text-lg'>
@@ -45,9 +52,9 @@ async function ProductsContainer({
             </Button>
           </div>
         </div>
-        <Separator className='mt-4' />
       </section>
       {/* PRODUCTS */}
+    
       <div>
         {totalProducts === 0 ? (
           <h5 className='text-2xl mt-16'>

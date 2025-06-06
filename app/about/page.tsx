@@ -11,10 +11,9 @@ function AboutPage() {
           </span>
         </h1>
         <p className='mt-6 text-lg tracking-wide leading-8 max-w-2xl mx-auto text-muted-foreground'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero hic
-          distinctio ducimus temporibus nobis autem laboriosam repellat, magni
-          fugiat minima excepturi neque, tenetur possimus nihil atque! Culpa nulla
-          labore nam?
+        La page que vous essayez de consulter est actuellement en cours de développement. <br />
+        Revenez plus tard pour découvrir son contenu ! <br />
+        En attendant, vous pouvez nous contacter si vous avez des questions.
         </p>
       </section>
     );

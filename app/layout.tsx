@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'] });
 import Providers from './providers';
 
 export const metadata: Metadata = {
-  title: 'Next Storefront',
-  description: 'A nifty store built with Next.js',
+  title: 'Kanap',
+  description: 'Kanap is a store built with Next.js',
 };
 
 export default function RootLayout({
