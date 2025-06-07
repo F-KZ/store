@@ -8,6 +8,6 @@ async function FavoriteToggleButton({ productId }: { productId: string }) {
   if (!userId) return <CardSignInButton />; */}
  // const favoriteId = await fetchFavoriteId({ productId });
 
-  return <FavoriteToggleForm  productId={productId} />;
+  return <FavoriteToggleForm  productId={productId} favoriteId={null} />;
 }
 export default FavoriteToggleButton;
