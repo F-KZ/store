@@ -3,13 +3,13 @@
 import db from '@/utils/db';
 import { currentUser, auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import {
+/*import {
   imageSchema,
   productSchema,
   reviewSchema,
   validateWithZodSchema,
-} from './schemas';
-import { deleteImage, uploadImage } from './supabase';
+} from './schemas';*/
+//import { deleteImage, uploadImage } from './supabase';
 import { revalidatePath } from 'next/cache';
 import { Cart } from '@prisma/client';
 
@@ -19,10 +19,7 @@ const getAuthUser = async () => {
   return user;
 };
 
-const signOut = async () => {
-  await auth.signOut?.();
-  redirect('/');
-}
+
 
 const getAdminUser = async () => {
   const user = await getAuthUser();
@@ -72,7 +69,7 @@ export const fetchSingleProduct = async (productId: string) => {
   return product;
 };
 
-export const createProductAction = async (
+/*  export const createProductAction = async (
   prevState: any,
   formData: FormData
 ): Promise<{ message: string }> => {
@@ -95,7 +92,7 @@ export const createProductAction = async (
     return renderError(error);
   }
   redirect('/admin/products');
-};
+};*/
 
 export const fetchAdminProducts = async () => {
   await getAdminUser();
@@ -107,7 +104,7 @@ export const fetchAdminProducts = async () => {
   return products;
 };
 
-export const deleteProductAction = async (prevState: { productId: string }) => {
+/*export const deleteProductAction = async (prevState: { productId: string }) => {
   const { productId } = prevState;
   await getAdminUser();
   try {
@@ -122,7 +119,7 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
   } catch (error) {
     return renderError(error);
   }
-};
+};*/
 
 export const fetchAdminProductDetails = async (productId: string) => {
   await getAdminUser();
@@ -135,7 +132,7 @@ export const fetchAdminProductDetails = async (productId: string) => {
   return product;
 };
 
-export const updateProductAction = async (
+/*export const updateProductAction = async (
   prevState: any,
   formData: FormData
 ) => {
@@ -158,8 +155,8 @@ export const updateProductAction = async (
   } catch (error) {
     return renderError(error);
   }
-};
-export const updateProductImageAction = async (
+};*/
+/*export const updateProductImageAction = async (
   prevState: any,
   formData: FormData
 ) => {
@@ -185,7 +182,7 @@ export const updateProductImageAction = async (
   } catch (error) {
     return renderError(error);
   }
-};
+};*/
 
 export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
   const user = await getAuthUser();
@@ -244,7 +241,7 @@ export const fetchUserFavorites = async () => {
   return favorites;
 };
 
-export const createReviewAction = async (
+/*export const createReviewAction = async (
   prevState: any,
   formData: FormData
 ) => {
@@ -263,7 +260,7 @@ export const createReviewAction = async (
   } catch (error) {
     return renderError(error);
   }
-};
+};*/
 
 export const fetchProductReviews = async (productId: string) => {
   const reviews = await db.review.findMany({
@@ -337,12 +334,11 @@ export const findExistingReview = async (userId: string, productId: string) => {
     },
   });
 };
-
 export const fetchCartItems = async () => {
-  const { userId } = auth();
+  const user = await getAuthUser();
   const cart = await db.cart.findFirst({
     where: {
-      clerkId: userId ?? '',
+      clerkId: user.id,
     },
     select: {
       numItemsInCart: true,
