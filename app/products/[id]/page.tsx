@@ -22,14 +22,15 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
       <BreadCrumbs name={product.name} />
       <div className='mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16'>
         {/* IMAGE FIRST COL */}
-        <div className='relative h-full'>
+        <div className='relative aspect-square w-full max-w-[600px] mx-auto'>
           <Image
             src={image}
             alt={name}
             fill
-            sizes='(max-width:768px) 100vw,(max-width:1200px) 50vw, 33vw'
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             priority
-            className='w-full rounded object-cover'
+            className='object-cover rounded-lg'
+            quality={100}
           />
         </div>
         {/* PRODUCT INFO SECOND COL */}

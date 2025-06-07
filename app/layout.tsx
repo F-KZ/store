@@ -4,8 +4,9 @@ import './globals.css';
 import Navbar from '@/components/navbar/Navbar';
 import Container from '@/components/global/Container';
 import Footer from '@/components/global/Footer';
-const inter = Inter({ subsets: ['latin'] });
 import Providers from './providers';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Kanap',
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
